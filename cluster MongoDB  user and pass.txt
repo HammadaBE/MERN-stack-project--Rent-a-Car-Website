@@ -1,5 +1,0 @@
-username: rentACarWebDb
-password:Code.RACcluster1
-
-
-mongodb+srv://rentACarWebDb:<password>@cluster0.oxz2qdb.mongodb.net/techNotesDB?retryWrites=true&w=majority
