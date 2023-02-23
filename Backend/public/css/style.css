@@ -13,7 +13,7 @@ html {
 
 body {
     min-height: 100vh;
-    background-color: #000;
+    background-color: #d1f2ed;
     color: whitesmoke;
     display: grid;
     place-content: center;

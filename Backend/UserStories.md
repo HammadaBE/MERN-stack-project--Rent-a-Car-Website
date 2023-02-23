@@ -1,4 +1,4 @@
-# User Stories for Rent a Car
+# User Stories for techNotes
 
 1. [ ] Replace current sticky note system
 2. [ ] Add a public facing page with basic contact info 
@@ -20,4 +20,3 @@
 18. [ ] Only Managers and Admins can access User Settings 
 19. [ ] Only Managers and Admins can create new users 
 20. [ ] Desktop mode is most important but should be available in mobile 
-
