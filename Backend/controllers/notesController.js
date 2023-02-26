@@ -1,5 +1,6 @@
 const Note = require('../models/Note')
 const User = require('../models/User')
+const Car = require('../models/Car')
 
 // @desc Get all notes 
 // @route GET /notes
@@ -13,25 +14,28 @@ const getAllNotes = async (req, res) => {
         return res.status(400).json({ message: 'No notes found' })
     }
 
-    // Add username to each note before sending the response 
-    // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE 
+    // Add username and car registration to each note before sending the response 
     // You could also do this with a for...of loop
-    const notesWithUser = await Promise.all(notes.map(async (note) => {
-        const user = await User.findById(note.user).lean().exec()
-        return { ...note, username: user.username }
-    }))
+    const notesWithUserAndCar = await Promise.all(notes.map(async (note) => {
+        const user = await User.findById(note.user).lean().exec();
+        const car = await Car.findById(note.car).lean().exec()
 
-    res.json(notesWithUser)
+        return car ? { ...note, username: user.username, carRegistartion: car.registration } : { ...note, username: user.username };
+
+    }));
+    
+    res.json(notesWithUserAndCar);
+    
 }
 
 // @desc Create new note
 // @route POST /notes
 // @access Private
 const createNewNote = async (req, res) => {
-    const { user, title, text } = req.body
+    const { user,car, title, text } = req.body
 
     // Confirm data
-    if (!user || !title || !text) {
+    if (!user ||!car || !title || !text) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -43,7 +47,7 @@ const createNewNote = async (req, res) => {
     }
 
     // Create and store the new note 
-    const note = await Note.create({ user, title, text })
+    const note = await Note.create({ user,car, title, text })
 
     if (note) { // Created 
         return res.status(201).json({ message: 'New note created' })
@@ -57,7 +61,7 @@ const createNewNote = async (req, res) => {
 // @route PATCH /notes
 // @access Private
 const updateNote = async (req, res) => {
-    const { id, user, title, text, completed } = req.body
+    const { id, user,car, title, text, completed } = req.body
 
     // Confirm data
     if (!id || !user || !title || !text || typeof completed !== 'boolean') {

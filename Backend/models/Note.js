@@ -8,6 +8,11 @@ const noteSchema = new mongoose.Schema(
             required: true,
             ref: 'User'
         },
+        car: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: false,
+            ref: 'Car'
+        },
         title: {
             type: String,
             required: true

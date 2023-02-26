@@ -1,7 +1,7 @@
-const User = require('../models/User')
+
 const Note = require('../models/Note')
 const Car = require('../models/Car')
-const bcrypt = require('bcrypt')
+
 
 // @desc Get all cars
 // @route GET /cars
@@ -36,7 +36,7 @@ const createNewCar = async (req, res) => {
         return res.status(409).json({ message: 'Duplicate registration' })
     }
 
-    
+    const carObject = { registration, brand,model, color, type,year }
 
     // Create and store new user 
     const car = await Car.create(carObject)
@@ -52,15 +52,15 @@ const createNewCar = async (req, res) => {
 // @route PATCH /car
 // @access Private
 const updateCar = async (req, res) => {
-    const { registration, brand, model, color, type, year } = req.body
+    const { id,registration, brand, model, color, type, year } = req.body
 
     // Confirm data 
-    if (!registration || !brand || !model || !color|| !type || !year) {
+    if (!id,!registration || !brand || !model || !color|| !type || !year) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
     // Does the car exist to update?
-    const car = await Car.findById(registration).exec()
+    const car = await Car.findById(id).exec()
 
     if (!car) {
         return res.status(400).json({ message: 'Car not found' })
@@ -70,7 +70,7 @@ const updateCar = async (req, res) => {
     const duplicate = await Car.findOne({ registration }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
     // Allow updates to the original user car
-    if (duplicate && duplicate?.registration.toString() !== registration) {
+    if (duplicate && duplicate?._id.toString() !== id) {
         return res.status(409).json({ message: 'Duplicate car' })
     }
 
@@ -92,21 +92,21 @@ const updateCar = async (req, res) => {
 // @route DELETE /cars
 // @access Private
 const deleteCar = async (req, res) => {
-    const { registration } = req.body
+    const { id } = req.body
 
     // Confirm data
-    if (!registration) {
-        return res.status(400).json({ message: 'Car registration Required' })
+    if (!id) {
+        return res.status(400).json({ message: 'Car ID Required' })
     }
 
     // Does the car still have assigned notes?
-    const note = await Note.findOne({ car: registration }).lean().exec()
+    const note = await Note.findOne({ car: id }).lean().exec()
     if (note) {
         return res.status(400).json({ message: 'Car has assigned notes' })
     }
 
     // Does the car exist to delete?
-    const car = await Car.findById(registration).exec()
+    const car = await Car.findById(id).exec()
 
     if (!car) {
         return res.status(400).json({ message: 'Car not found' })
