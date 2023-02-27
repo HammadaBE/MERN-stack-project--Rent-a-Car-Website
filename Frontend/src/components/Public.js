@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import CarsList from '../features/cars/CarsList'
+
 
 const Public = () => {
     const content = (
@@ -16,7 +18,10 @@ const Public = () => {
                 </address>
                 <br />
                 <p>Owner: Khalil Shrif</p>
+                
+                <CarsList />
             </main>
+
             <footer>
                 <Link to="/login">Employee Login</Link>
             </footer>

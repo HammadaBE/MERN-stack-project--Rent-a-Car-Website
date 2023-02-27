@@ -3,7 +3,7 @@ const router = express.Router()
 const carsController = require('../controllers/carsController')
 const verifyJWT = require('../middleware/verifyJWT')
 
-router.use(verifyJWT)
+//router.use(verifyJWT)
 
 router.route('/')
     .get(carsController.getAllCars)
