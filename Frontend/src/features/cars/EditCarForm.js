@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react"
-import { useUpdateCarMutation, useCarNoteMutation } from "./carsApiSlice"
+import { useUpdateCarMutation, useDeleteCarMutation } from "./carsApiSlice"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
-import useAuth from "../../hooks/useAuth"
+//import useAuth from "../../hooks/useAuth"
 
-const EditCarForm = ({ car, users }) => {
+const EditCarForm = ({ car }) => {
 
-    const { isManager, isAdmin } = useAuth()
+    //const { isManager, isAdmin } = useAuth()
 
     const [updateCar, {
         isLoading,
         isSuccess,
         isError,
         error
-    }] = useUpdateNoteMutation()
+    }] = useUpdateCarMutation()
 
     const [deleteCar, {
         isSuccess: isDelSuccess,
@@ -24,7 +24,7 @@ const EditCarForm = ({ car, users }) => {
 
     const navigate = useNavigate()
 
-    const [registration, setRegistration] = useState(car.registartion)
+    const [registration, setRegistration] = useState(car.registration)
     const [brand, setBrand] = useState(car.brand)
     const [model, setModel] = useState(car.model)
     const [color, setColor] = useState(car.color)
@@ -48,7 +48,7 @@ const EditCarForm = ({ car, users }) => {
 
     const onRegistrationChanged = e => setRegistration(e.target.value)
     const onBrandChanged = e => setBrand(e.target.value)
-    const onModelChanged = e => setModel(prev => !prev)
+    const onModelChanged = e => setModel(e.target.value)
     const onColorChanged = e => setColor(e.target.value)
     const onTypeChanged = e => setType(e.target.value)
     const onYearChanged = e => setYear(e.target.value)
@@ -68,18 +68,18 @@ const EditCarForm = ({ car, users }) => {
     const created = new Date(car.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })
     const updated = new Date(car.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })
 
-    const options = cars.map(car => {
-        return (
-            <option
-                key={car.id}
-                value={car.id}
+    // const options = users.map(car => {
+    //     return (
+    //         <option
+    //             key={user.id}
+    //             value={user.id}
 
-            > {car.username}</option >
-        )
-    })
+    //         > {user.username}</option >
+    //     )
+    // })
 
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
-    const validRegistrationClass = !registartion ? "form__input--incomplete" : ''
+    const validRegistrationClass = !registration ? "form__input--incomplete" : ''
     const validBrandClass = !brand ? "form__input--incomplete" : ''
     const validModelClass = !model ? "form__input--incomplete" : ''
     const validColorClass = !color ? "form__input--incomplete" : ''
@@ -89,18 +89,18 @@ const EditCarForm = ({ car, users }) => {
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
 
-    let deleteButton = null
-    if (isManager || isAdmin) {
-        deleteButton = (
-            <button
-                className="icon-button"
-                title="Delete"
-                onClick={onDeleteCarClicked}
-            >
-                <FontAwesomeIcon icon={faTrashCan} />
-            </button>
-        )
-    }
+    // let deleteButton = null
+    // if (isManager || isAdmin) {
+    //     deleteButton = (
+    //         <button
+    //             className="icon-button"
+    //             title="Delete"
+    //             onClick={onDeleteCarClicked}
+    //         >
+    //             <FontAwesomeIcon icon={faTrashCan} />
+    //         </button>
+    //     )
+    // }
 
     const content = (
         <>
@@ -118,7 +118,13 @@ const EditCarForm = ({ car, users }) => {
                         >
                             <FontAwesomeIcon icon={faSave} />
                         </button>
-                        {deleteButton}
+                        <button
+                            className="icon-button"
+                            title="Delete"
+                            onClick={onDeleteCarClicked}
+                        >
+                            <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
                     </div>
                 </div>
                 <label className="form__label" htmlFor="car-registration">
@@ -179,31 +185,7 @@ const EditCarForm = ({ car, users }) => {
                     onChange={onYearChanged}
                 />
                 <div className="form__row">
-                    {/* <div className="form__divider">
-                        <label className="form__label form__checkbox-container" htmlFor="note-completed">
-                            WORK COMPLETE:
-                            <input
-                                className="form__checkbox"
-                                id="note-completed"
-                                name="completed"
-                                type="checkbox"
-                                checked={completed}
-                                onChange={onCompletedChanged}
-                            />
-                        </label>
-
-                        <label className="form__label form__checkbox-container" htmlFor="note-username">
-                            ASSIGNED TO:</label>
-                        <select
-                            id="note-username"
-                            name="username"
-                            className="form__select"
-                            value={userId}
-                            onChange={onUserIdChanged}
-                        >
-                            {options}
-                        </select>
-                    </div> */}
+              
                     <div className="form__divider">
                         <p className="form__created">Created:<br />{created}</p>
                         <p className="form__updated">Updated:<br />{updated}</p>

@@ -35,7 +35,7 @@ const createNewNote = async (req, res) => {
     const { user,car, title, text } = req.body
 
     // Confirm data
-    if (!user ||!car || !title || !text) {
+    if (!user  || !title || !text) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 

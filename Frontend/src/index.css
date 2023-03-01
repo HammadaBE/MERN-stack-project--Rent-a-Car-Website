@@ -10,13 +10,13 @@
 
 :root {
   /* COLORS */
-  --BGCOLOR: #0F172A;
+  --BGCOLOR: #e0e4ee;
   --BORDER-COLOR: #FFF;
-  --COLOR: #FFF;
+  --COLOR: #080101;
   --ERROR: firebrick;
   --INACTIVE: lightgray;
-  --LINK-COLOR: whitesmoke;
-  --LINK-HOVER: rgba(245, 245, 245, 0.9);
+  --LINK-COLOR: rgb(11, 8, 8);
+  --LINK-HOVER: rgba(13, 118, 46, 0.9);
   --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
   --STATUS-COMPLETE: limegreen;
   --STATUS-OPEN: firebrick;
@@ -70,11 +70,19 @@ body {
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
-  background-image: url('./img/background.jpg');
   background-size: cover;
   background-position: top right;
   background-blend-mode: multiply;
 }
+
+
+.headerTd {
+  width: 500px;
+  text-align: left;
+  border: none;
+  padding: 50px;
+}
+
 
 input,
 button,
@@ -117,6 +125,12 @@ a:focus-visible {
   flex-grow: 1;
 }
 
+
+.row{
+  position: relative;
+  left: 30px;
+  border: 3px solid #73AD21;
+}
 .public__main,
 .login {
   flex-grow: 1;
@@ -203,7 +217,24 @@ tr {
   color: var(--TABLE-COLOR);
   gap: 0.1em;
 }
-
+.table--publicCars {
+  font-size: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  color: var(--TABLE-COLOR);
+  gap: 0.1em;
+  
+}
+.table--cars {
+  font-size: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
+  color: var(--TABLE-COLOR);
+  gap: 0.1em;
+  
+}
 .table__button {
   padding: 0.25em;
   font-size: 1.5rem;

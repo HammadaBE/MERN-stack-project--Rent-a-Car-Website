@@ -7,8 +7,8 @@ const verifyJWT = require('../middleware/verifyJWT')
 
 router.route('/')
     .get(carsController.getAllCars)
-    .post(carsController.createNewCar)
-    .patch(carsController.updateCar)
-    .delete(carsController.deleteCar)
+    .post(verifyJWT,carsController.createNewCar)
+    .patch(verifyJWT,carsController.updateCar)
+    .delete(verifyJWT,carsController.deleteCar)
 
 module.exports = router

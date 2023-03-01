@@ -4,7 +4,7 @@ import { useAddNewCarMutation } from "./carsApiSlice"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 
-const NewNoteForm = ({ car }) => {
+const NewCarForm = ({ car }) => {
 
     const [addNewCar, {
         isLoading,
@@ -15,12 +15,12 @@ const NewNoteForm = ({ car }) => {
 
     const navigate = useNavigate()
 
-    const [registration, setRegistration] = useState(car.registartion)
-    const [brand, setBrand] = useState(car.brand)
-    const [model, setModel] = useState(car.model)
-    const [color, setColor] = useState(car.color)
-    const [type, setType] = useState(car.type)
-    const [year, setYear] = useState(car.year)
+    const [registration, setRegistration] = useState('')
+    const [brand, setBrand] = useState('')
+    const [model, setModel] = useState('')
+    const [color, setColor] = useState('')
+    const [type, setType] = useState('')
+    const [year, setYear] = useState('')
 
     useEffect(() => {
         if (isSuccess) {
@@ -36,7 +36,7 @@ const NewNoteForm = ({ car }) => {
 
     const onRegistrationChanged = e => setRegistration(e.target.value)
     const onBrandChanged = e => setBrand(e.target.value)
-    const onModelChanged = e => setModel(prev => !prev)
+    const onModelChanged = e => setModel(e.target.value)
     const onColorChanged = e => setColor(e.target.value)
     const onTypeChanged = e => setType(e.target.value)
     const onYearChanged = e => setYear(e.target.value)
@@ -61,7 +61,7 @@ const NewNoteForm = ({ car }) => {
     // })
 
     const errClass = isError ? "errmsg" : "offscreen"
-    const validRegistrationClass = !registartion ? "form__input--incomplete" : ''
+    const validRegistrationClass = !registration ? "form__input--incomplete" : ''
     const validBrandClass = !brand ? "form__input--incomplete" : ''
     const validModelClass = !model ? "form__input--incomplete" : ''
     const validColorClass = !color ? "form__input--incomplete" : ''
@@ -72,7 +72,7 @@ const NewNoteForm = ({ car }) => {
         <>
             <p className={errClass}>{error?.data?.message}</p>
 
-            <form className="form" onSubmit={onSaveNoteClicked}>
+            <form className="form" onSubmit={onSaveCarClicked}>
                 <div className="form__title-row">
                     <h2>New Car</h2>
                     <div className="form__action-buttons">

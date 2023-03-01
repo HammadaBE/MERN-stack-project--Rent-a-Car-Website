@@ -1,10 +1,10 @@
 import { useGetCarsQuery } from "./carsApiSlice"
-import Car from "./Car"
+import PublicCar from "./PublicCar"
 import useAuth from "../../hooks/useAuth"
 
-const CarsList = () => {
+const PublicCarsList = () => {
 
-    const { username, isManager, isAdmin } = useAuth()
+    //const { username, isManager, isAdmin } = useAuth()
 
     const {
         data: cars,
@@ -12,7 +12,7 @@ const CarsList = () => {
         isSuccess,
         isError,
         error
-    } = useGetCarsQuery('carsList', {
+    } = useGetCarsQuery('publicCarsList', {
         pollingInterval: 15000,
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true
@@ -31,10 +31,10 @@ const CarsList = () => {
 
         
 
-        const tableContent =ids?.length && ids.map (carId => <Car key={carId} carId={carId} />)
+        const tableContent =ids?.length && ids.map (carId => <PublicCar key={carId} carId={carId} />)
 
         content = (
-            <table className="table--cars">
+            <table className="table--publicCars">
                 <thead className="table__thead">
                     <tr>
                         <th scope="col" className="table__th car__created" >Created</th>
@@ -45,7 +45,7 @@ const CarsList = () => {
                         <th scope="col" className="table__th car__color">Color</th>
                         <th scope="col" className="table__th car__type">Type</th>
                         <th scope="col" className="table__th car__year">Year</th>
-                        <th scope="col" className="table__th car__edit">Edit</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -57,4 +57,4 @@ const CarsList = () => {
 
     return content
 }
-export default CarsList
+export default PublicCarsList

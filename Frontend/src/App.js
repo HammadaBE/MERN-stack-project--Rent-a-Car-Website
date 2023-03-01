@@ -6,16 +6,23 @@ import DashLayout from './components/DashLayout'
 import Welcome from './features/auth/Welcome'
 import NotesList from './features/notes/NotesList'
 import UsersList from './features/users/UsersList'
+import CarsList from './features/cars/CarsList';
 
 import EditUser from './features/users/EditUser'
 import NewUserForm from './features/users/NewUserForm'
+
 import EditNote from './features/notes/EditNote'
 import NewNote from './features/notes/NewNote'
+
+import EditCar from './features/cars/EditCar'
+import NewCarForm from './features/cars/NewCarForm'
+
 import Prefetch from './features/auth/Prefetch'
 import PersistLogin from './features/auth/PersistLogin'
 import RequireAuth from './features/auth/RequireAuth'
 import { ROLES } from './config/roles'
 import useTitle from './hooks/useTitle';
+
 
 function App() {
   useTitle('Khalilocation')
@@ -25,6 +32,7 @@ function App() {
         {/* public routes */}
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
+        <Route path="publicCarsList" element={<publicCarsList />} />
 
         {/* Protected Routes */}
         <Route element={<PersistLogin />}>
@@ -46,6 +54,12 @@ function App() {
                   <Route index element={<NotesList />} />
                   <Route path=":id" element={<EditNote />} />
                   <Route path="new" element={<NewNote />} />
+                </Route>
+
+                <Route path="cars" >
+                    <Route index element={<CarsList />} />
+                    <Route path=":id" element={<EditCar />} />
+                    <Route path="new" element={<NewCarForm />} />
                 </Route>
 
               </Route>{/* End Dash */}
