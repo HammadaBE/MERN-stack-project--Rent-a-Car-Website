@@ -5,7 +5,7 @@ import {
     faFilePen,
     faUserGear,
     faUserPlus,
-    //faSolidFaCar,
+    faCar,
     faRightFromBracket
 } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate, Link, useLocation } from 'react-router-dom'
@@ -81,7 +81,7 @@ const DashHeader = () => {
                 title="New User"
                 onClick={onNewCarClicked}
             >
-                <FontAwesomeIcon icon="fa-solid fa-car-tunnel" /> 
+                <FontAwesomeIcon icon="" /> 
             </button>
         )
     }
@@ -121,7 +121,7 @@ const DashHeader = () => {
                 title="Cars"
                 onClick={onCarsClicked}
             >
-                <FontAwesomeIcon icon="fa-solid fa-car" />
+                <FontAwesomeIcon icon={faCar} />
             </button>
         )
     }

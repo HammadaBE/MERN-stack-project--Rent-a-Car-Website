@@ -32,7 +32,7 @@ const getAllNotes = async (req, res) => {
 // @route POST /notes
 // @access Private
 const createNewNote = async (req, res) => {
-    const { user,car, title, text } = req.body
+    const { user, title, text } = req.body
 
     // Confirm data
     if (!user  || !title || !text) {
@@ -47,7 +47,7 @@ const createNewNote = async (req, res) => {
     }
 
     // Create and store the new note 
-    const note = await Note.create({ user,car, title, text })
+    const note = await Note.create({ user, title, text })
 
     if (note) { // Created 
         return res.status(201).json({ message: 'New note created' })
@@ -61,7 +61,7 @@ const createNewNote = async (req, res) => {
 // @route PATCH /notes
 // @access Private
 const updateNote = async (req, res) => {
-    const { id, user,car, title, text, completed } = req.body
+    const { id, user, title, text, completed } = req.body
 
     // Confirm data
     if (!id || !user || !title || !text || typeof completed !== 'boolean') {
