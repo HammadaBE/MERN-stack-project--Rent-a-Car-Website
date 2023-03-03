@@ -13,26 +13,33 @@ const PublicCar = ({ carId }) => {
         }),
     })
 
-    
+    const navigate = useNavigate()
 
     if (car) {
-        const created = new Date(car.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
+        
 
-        const updated = new Date(car.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
-
-      
+        const show3Dmodel = () => navigate(`/carModal`)
 
         return (
             <tr className="table__row">
                
-                <td className="table__cell car__created">{created}</td>
-                <td className="table__cell car__updated">{updated}</td>
+                {/* <td className="table__cell car__created">{created}</td>
+                <td className="table__cell car__updated">{updated}</td> */}
                 <td className="table__cell car__registration">{car.registration}</td>
                 <td className="table__cell car__brand">{car.brand}</td>
                 <td className="table__cell car__model">{car.model}</td>
                 <td className="table__cell car__color">{car.color}</td>
                 <td className="table__cell car__type">{car.type}</td>
                 <td className="table__cell car__year">{car.year}</td>
+
+                <td className="table__cell">
+                    <button
+                        className="icon-button table__button"
+                        onClick={show3Dmodel}
+                    >
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                    </button>
+                </td>
                 
             </tr>
         )

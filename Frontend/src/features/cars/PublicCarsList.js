@@ -37,14 +37,15 @@ const PublicCarsList = () => {
             <table className="table--publicCars">
                 <thead className="table__thead">
                     <tr>
-                        <th scope="col" className="table__th car__created" >Created</th>
-                        <th scope="col" className="table__th car__updated">Updated</th>
+                        {/* <th scope="col" className="table__th car__created" >Created</th>
+                        <th scope="col" className="table__th car__updated">Updated</th> */}
                         <th scope="col" className="table__th car__Registration">Registration</th>
                         <th scope="col" className="table__th car__Brand">Brand</th>
                         <th scope="col" className="table__th car__model">Model</th>
                         <th scope="col" className="table__th car__color">Color</th>
                         <th scope="col" className="table__th car__type">Type</th>
                         <th scope="col" className="table__th car__year">Year</th>
+                        <th scope="col" className="table__th car__3D__model">3D model</th>
                         
                     </tr>
                 </thead>

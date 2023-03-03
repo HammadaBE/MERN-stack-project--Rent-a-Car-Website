@@ -23,6 +23,10 @@ import RequireAuth from './features/auth/RequireAuth'
 import { ROLES } from './config/roles'
 import useTitle from './hooks/useTitle';
 
+import Modal from './Modal'
+
+//import ThreeScene from './threeScene';
+
 
 function App() {
   useTitle('Khalilocation')
@@ -33,6 +37,8 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
         <Route path="publicCarsList" element={<publicCarsList />} />
+        <Route path="carModal" element={<Modal />} />
+        
 
         {/* Protected Routes */}
         <Route element={<PersistLogin />}>
