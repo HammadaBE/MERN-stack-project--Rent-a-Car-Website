@@ -8,7 +8,7 @@ const Modal = ({ isOpen, closeModal }) => {
       {isOpen && (
         <div className="modal">
           <div className="modal-content">
-            <button onClick={closeModal}>Close Modal</button>
+            <button onClick={closeModal}>Close</button>
             <img src="dacia.png" alt="Dacia image" />
           </div>
         </div>

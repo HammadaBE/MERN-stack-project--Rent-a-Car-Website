@@ -45,7 +45,7 @@ const PublicCarsList = () => {
                         <th scope="col" className="table__th car__color">Color</th>
                         <th scope="col" className="table__th car__type">Type</th>
                         <th scope="col" className="table__th car__year">Year</th>
-                        <th scope="col" className="table__th car__3D__model">3D model</th>
+                        <th scope="col" className="table__th car__3D__model">Picture</th>
                         
                     </tr>
                 </thead>

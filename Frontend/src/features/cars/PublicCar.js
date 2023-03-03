@@ -29,7 +29,7 @@ const PublicCar = ({ carId }) => {
           <td className="table__cell car__year">{car.year}</td>
           <td className="table__cell">
             <button className="icon-button table__button" onClick={showImg}>
-              <FontAwesomeIcon icon={faPenToSquare} />
+            <img className='car_image'src="dacia.png" alt="Dacia image"  style={{ width: "80px", height: "50px" }}/>
             </button>
           </td>
         </tr>
