@@ -165,7 +165,7 @@ const DashHeader = () => {
                         <table className="tableHeader">
                             <tr>
                                 
-                                <td><img src="khalilLogo.png" alt="Khalilocation Logo" width="100" height="100" /></td>
+                                <td><img src={process.env.PUBLIC_URL + '/khalilLogo.png'}alt="Khalilocation Logo" width="100" height="100" /></td>
 
                             </tr>
                             <tr>

@@ -1,7 +1,5 @@
-
-const Note = require('../models/Note')
 const Car = require('../models/Car')
-
+const { v4: uuidv4 } = require('uuid')
 
 // @desc Get all cars
 // @route GET /cars
@@ -22,10 +20,10 @@ const getAllCars = async (req, res) => {
 // @route POST /cars
 // @access Private
 const createNewCar = async (req, res) => {
-    const {registration, brand, model, color, type, year } = req.body
+    const {registration, brand, model, color, type, year, photo } = req.body
 
     // Confirm data
-    if (!registration || !brand || !model || !color || !type || !year) {
+    if (!registration || !brand || !model || !color || !type || !year || !photo) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -36,13 +34,14 @@ const createNewCar = async (req, res) => {
         return res.status(409).json({ message: 'Duplicate registration' })
     }
 
-    const carObject = { registration, brand,model, color, type,year }
+    //const photo = `${uuidv4()}-${req.file.originalname}`
+    const carObject = { registration, brand,model, color, type,year,photo }
 
-    // Create and store new user 
+    // Create and store new car 
     const car = await Car.create(carObject)
 
     if (car) { //created 
-        res.status(201).json({ message: `New car  ${registration} ${brand} ${model} ${color} ${year}  added` })
+        res.status(201).json({ message: `New car  ${registration} ${brand} ${model} ${color} ${year}   added` })
     } else {
         res.status(400).json({ message: 'Invalid car data received' })
     }
@@ -52,10 +51,10 @@ const createNewCar = async (req, res) => {
 // @route PATCH /car
 // @access Private
 const updateCar = async (req, res) => {
-    const { id,registration, brand, model, color, type, year } = req.body
+    const { id,registration, brand, model, color, type, year, photo } = req.body
 
     // Confirm data 
-    if (!id,!registration || !brand || !model || !color|| !type || !year) {
+    if (!id || !registration || !brand || !model || !color|| !type || !year || !photo) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -74,14 +73,15 @@ const updateCar = async (req, res) => {
         return res.status(409).json({ message: 'Duplicate car' })
     }
 
+    //const photo = `${uuidv4()}-${req.file.originalname}`
+
     car.registration = registration
     car.brand = brand
     car.model = model
     car.color = color
     car.type = type
     car.year = year
-
-    
+    car.photo = photo
 
     const updatedCar = await car.save()
 
@@ -95,15 +95,15 @@ const deleteCar = async (req, res) => {
     const { id } = req.body
 
     // Confirm data
+
+
+    // Confirm data
     if (!id) {
         return res.status(400).json({ message: 'Car ID Required' })
     }
 
-    // Does the car still have assigned notes?
-    const note = await Note.findOne({ car: id }).lean().exec()
-    if (note) {
-        return res.status(400).json({ message: 'Car has assigned notes' })
-    }
+    
+    
 
     // Does the car exist to delete?
     const car = await Car.findById(id).exec()

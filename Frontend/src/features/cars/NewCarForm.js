@@ -21,6 +21,7 @@ const NewCarForm = ({ car }) => {
     const [color, setColor] = useState('')
     const [type, setType] = useState('')
     const [year, setYear] = useState('')
+    const [photo, setPhoto] = useState('')
 
     useEffect(() => {
         if (isSuccess) {
@@ -30,6 +31,7 @@ const NewCarForm = ({ car }) => {
             setColor('')
             setType('')
             setYear('')
+            setPhoto('')
             navigate('/dash/cars')
         }
     }, [isSuccess, navigate])
@@ -40,14 +42,15 @@ const NewCarForm = ({ car }) => {
     const onColorChanged = e => setColor(e.target.value)
     const onTypeChanged = e => setType(e.target.value)
     const onYearChanged = e => setYear(e.target.value)
+    const onPhotoChanged = e => setPhoto(e.target.value)
 
-    const canSave = [registration, brand, model,color,type,year].every(Boolean) && !isLoading
+    const canSave = [registration, brand, model, color, type, year, photo].every(Boolean) && !isLoading
 
 
     const onSaveCarClicked = async (e) => {
         e.preventDefault()
         if (canSave) {
-            await addNewCar({ registration, brand, model, color, type,year })
+            await addNewCar({ registration, brand, model, color, type, year, photo })
         }
     }
 
@@ -67,6 +70,7 @@ const NewCarForm = ({ car }) => {
     const validColorClass = !color ? "form__input--incomplete" : ''
     const validTypeClass = !type ? "form__input--incomplete" : ''
     const validYearClass = !year ? "form__input--incomplete" : ''
+    const validPhotoClass = !photo ? "form__input--incomplete" : ''
 
     const content = (
         <>
@@ -86,7 +90,7 @@ const NewCarForm = ({ car }) => {
                     </div>
                 </div>
                 <label className="form__label" htmlFor="car-registration">
-                   Registartion:</label>
+                    Registartion:</label>
                 <input
                     className={`form__input ${validRegistrationClass}`}
                     id="car-registration"
@@ -141,6 +145,15 @@ const NewCarForm = ({ car }) => {
                     name="year"
                     value={year}
                     onChange={onYearChanged}
+                />
+                <label className="form__label" htmlFor="car-photo-path">
+                    Photo:</label>
+                <input
+                    className={`form__input form__input--text ${validPhotoClass}`}
+                    id="car-photo-path"
+                    name="photo"
+                    value={photo}
+                    onChange={onPhotoChanged}
                 />
 
             </form>

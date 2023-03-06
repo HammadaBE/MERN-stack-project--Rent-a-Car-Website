@@ -1,15 +1,33 @@
-// Modal.js
+import React from 'react';
+import { useGetCarsQuery } from './features/cars/carsApiSlice';
+import PublicCar from './features/cars/PublicCar';
 
-import React, { useState } from 'react'
+const Modal = ({ isOpen, closeModal, carId }) => {
+  const { car } = useGetCarsQuery('publicCarsList', {
+    selectFromResult: ({ data }) => ({
+      car: data?.entities[carId]
+    }),
+  });
 
-const Modal = ({ isOpen, closeModal }) => {
+  console.log('PUBLIC_URL:', process.env.PUBLIC_URL);
+  console.log('car.photo:', car?.photo);
+  console.log('car.regsitration:', car?.registration);
+
+ 
   return (
     <>
       {isOpen && (
         <div className="modal">
           <div className="modal-content">
             <button onClick={closeModal}>Close</button>
-            <img src="dacia.png" alt="Dacia image" />
+            
+            {car && (
+              <img
+                src={process.env.PUBLIC_URL + car.photo}
+                alt={`${car.brand} ${car.model}`}
+                style={{ width: '100%' }}
+              />
+            )}
           </div>
         </div>
       )}
@@ -17,5 +35,4 @@ const Modal = ({ isOpen, closeModal }) => {
   );
 };
 
-
-export default Modal
+export default Modal;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useGetCarsQuery } from './carsApiSlice';
+
 import { memo } from 'react';
 import Modal from '../../Modal';
 
@@ -11,9 +12,11 @@ const PublicCar = ({ carId }) => {
 
   const { car } = useGetCarsQuery('publicCarsList', {
     selectFromResult: ({ data }) => ({
-      car: data?.entities[carId],
+      car: data?.entities[carId]
     }),
   });
+  console.log('car.photo:', car?.photo);
+  console.log('car.regsitration:', car?.registration);
 
   const showImg = () => setShowModal(true);
 
@@ -29,11 +32,11 @@ const PublicCar = ({ carId }) => {
           <td className="table__cell car__year">{car.year}</td>
           <td className="table__cell">
             <button className="icon-button table__button" onClick={showImg}>
-            <img className='car_image'src="dacia.png" alt="Dacia image"  style={{ width: "80px", height: "50px" }}/>
+            <img className="car_image"src={process.env.PUBLIC_URL + car.photo} alt="Dacia image"  style={{ width: "80px", height: "50px" }}/>
             </button>
           </td>
         </tr>
-        <Modal isOpen={showModal} closeModal={() => setShowModal(false)} />
+        <Modal isOpen={showModal} closeModal={() => setShowModal(false)} carId={carId}/>
       </>
     );
   } else return null;

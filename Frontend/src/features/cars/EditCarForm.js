@@ -30,6 +30,8 @@ const EditCarForm = ({ car }) => {
     const [color, setColor] = useState(car.color)
     const [type, setType] = useState(car.type)
     const [year, setYear] = useState(car.year)
+    const [photo, setPhoto] = useState(car.photo)
+    
     
 
     useEffect(() => {
@@ -41,6 +43,7 @@ const EditCarForm = ({ car }) => {
             setColor('')
             setType('')
             setYear('')
+            setPhoto('')
             navigate('/dash/cars')
         }
 
@@ -52,12 +55,13 @@ const EditCarForm = ({ car }) => {
     const onColorChanged = e => setColor(e.target.value)
     const onTypeChanged = e => setType(e.target.value)
     const onYearChanged = e => setYear(e.target.value)
+    const onPhotoChanged = e => setPhoto(e.target.value)
 
-    const canSave = [registration, brand, model,color,type,year].every(Boolean) && !isLoading
+    const canSave = [registration, brand, model,color,type,year,photo].every(Boolean) && !isLoading
 
     const onSaveCarClicked = async (e) => {
         if (canSave) {
-            await updateCar({ id: car.id,registration, brand, model, color, type,year })
+            await updateCar({ id: car.id,registration, brand, model, color, type,year,photo })
         }
     }
 
@@ -85,6 +89,8 @@ const EditCarForm = ({ car }) => {
     const validColorClass = !color ? "form__input--incomplete" : ''
     const validTypeClass = !type ? "form__input--incomplete" : ''
     const validYearClass = !year ? "form__input--incomplete" : ''
+    const validPhotoClass = !photo ? "form__input--incomplete" : ''
+
 
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
@@ -183,6 +189,15 @@ const EditCarForm = ({ car }) => {
                     name="year"
                     value={year}
                     onChange={onYearChanged}
+                />
+                <label className="form__label" htmlFor="car-photo">
+                    Photo:</label>
+                <input
+                    className={`form__input form__input--path ${validPhotoClass}`}
+                    id="car-photo"
+                    name="photo"
+                    value={photo}
+                    onChange={onPhotoChanged}
                 />
                 <div className="form__row">
               
