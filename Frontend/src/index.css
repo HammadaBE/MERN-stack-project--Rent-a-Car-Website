@@ -115,11 +115,16 @@ a:focus-visible {
 
 .public,
 .welcome {
-  /*background-color:red;*/
+  /* background-color:red; */
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+.publicHeader {
+  background-color:red;
+  text-align: left;
+  width: 100%;
 }
 
 .public {

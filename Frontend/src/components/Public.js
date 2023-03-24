@@ -8,7 +8,7 @@ const Public = () => {
             <header  >
                 <table className="publicHeader"  >
                     <tr >
-                        <td><img src="khalilLogo.PNG" alt="Khalilocation Logo" width="100" height="100" /></td>
+                        <td  ><img src="khalilLogo.PNG" alt="Khalilocation Logo" width="150" height="150" /></td>
                         
                     </tr>
                     <tr>
