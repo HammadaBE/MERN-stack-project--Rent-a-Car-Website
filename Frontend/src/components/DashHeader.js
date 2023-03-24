@@ -169,7 +169,7 @@ const DashHeader = () => {
 
                             </tr>
                             <tr>
-                                <td className='headerTd'><h1 id="publicHeader" text-align="center"> <span className="nowrap">Khalilocation Rent A Car</span></h1></td>
+                                <td className='headerTd'><h1  text-align="center"> <span className="nowrap">Khalilocation Rent A Car</span></h1></td>
 
                             </tr>
                         </table>

@@ -10,7 +10,7 @@
 
 :root {
   /* COLORS */
-  --BGCOLOR: #e0e4ee;
+  --BGCOLOR: #ced9f3;
   --BORDER-COLOR: #FFF;
   --COLOR: #080101;
   --ERROR: firebrick;
@@ -115,6 +115,8 @@ a:focus-visible {
 
 .public,
 .welcome {
+  /*background-color:red;*/
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -143,9 +145,10 @@ a:focus-visible {
   margin-top: 1em;
 }
 
-.welcome a::before {
+/* .welcome a::before {
   content: "➜ "
-}
+} */
+
 
 /* || DASH HEADER, CONTAINER & FOOTER */
 
@@ -153,7 +156,7 @@ a:focus-visible {
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: var(--BGCOLOR);
+  background-color: red;
   padding: 0.1em 0.5em;
   border-bottom: 1px solid var(--BORDER-COLOR);
 }
@@ -166,7 +169,7 @@ a:focus-visible {
 }
 
 .dash-header__container--small {
-  max-width: 800px;
+  max-width: 500px;
 }
 
 .dash-header__nav {
@@ -186,7 +189,7 @@ a:focus-visible {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  background-color: var(--BGCOLOR);
+  background-color: rgb(220, 181, 181);
   padding: 0.5em;
   border-top: 1px solid var(--BORDER-COLOR);
   display: flex;
@@ -210,12 +213,12 @@ tr {
 }
 
 .table {
-  font-size: 1rem;
+  font-size: 0.4rem; /* Decrease font size */
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   color: var(--TABLE-COLOR);
-  gap: 0.1em;
+  gap: 0.1em; /* Increase gap between rows */
 }
 .table--publicCars {
   font-size: 1rem;
@@ -249,6 +252,7 @@ tr {
 
 .table__th,
 .table__cell {
+  font-size: 1rem;
   background-color: var(--TABLE-BGCOLOR);
   text-align: left;
   border: 1px solid var(--TABLE-COLOR);
@@ -320,10 +324,20 @@ tr {
 /* || FORM - GENERAL */
 
 .form {
+  text-align: center;
   display: flex;
   flex-flow: column nowrap;
   gap: 0.75em;
   max-width: 800px;
+  margin: 0 auto;
+}
+.form_login {
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.75em;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .form__checkbox-container {
@@ -349,11 +363,11 @@ tr {
 .form__input,
 .form__submit-button {
   padding: 0.5em;
-  border-radius: 15px;
+  border-radius: 3px;
 }
 
 .form__input--text {
-  min-height: 50px;
+  min-height: 20px;
 }
 
 .form__input--incomplete {

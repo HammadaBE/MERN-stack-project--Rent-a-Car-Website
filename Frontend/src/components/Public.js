@@ -5,9 +5,9 @@ import PublicCarsList from '../features/cars/PublicCarsList'
 const Public = () => {
     const content = (
         <section className="public">
-            <header>
-                <table className="publicHeader">
-                    <tr>
+            <header  >
+                <table className="publicHeader"  >
+                    <tr >
                         <td><img src="khalilLogo.PNG" alt="Khalilocation Logo" width="100" height="100" /></td>
                         
                     </tr>
@@ -18,7 +18,7 @@ const Public = () => {
                 </table>
 
             </header>
-            <main className="public__main">
+            <main className="public__main" >
                 <p>Located in Laayoune, Morocco. Khalilocation offers the best rental car deals.</p>
                 <address className="public__addr">
                     Khalilocation Rent A Car<br />
@@ -32,7 +32,7 @@ const Public = () => {
                 <PublicCarsList />
             </main>
 
-            <footer>
+            <footer >
                 <Link to="/login">Employee Login</Link>
             </footer>
         </section>

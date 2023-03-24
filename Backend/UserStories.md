@@ -1,6 +1,6 @@
-# User Stories for techNotes
+# User Stories for Khalilocation Website
 
-1. [ ] Replace current sticky note system
+1. [ ] Implement a Website to manage a rent a car bussines
 2. [ ] Add a public facing page with basic contact info 
 3. [ ] Add an employee login to the notes app 
 4. [ ] Provide a welcome page after login 
@@ -14,9 +14,10 @@
 12. [ ] Notes are either OPEN or COMPLETED 
 13. [ ] Users can be Employees, Managers, or Admins 
 14. [ ] Notes can only be deleted by Managers or Admins 
-15. [ ] Anyone can create a note (when customer checks-in)
-16. [ ] Employees can only view and edit their assigned notes  
-17. [ ] Managers and Admins can view, edit, and delete all notes 
+15. [ ] Anyone can create a note or a new car.
+16. [ ] Employees can only view and edit their assigned notes, but they can edit any car. 
+17. [ ] Managers and Admins can view, edit, and delete all notes and cars.
 18. [ ] Only Managers and Admins can access User Settings 
 19. [ ] Only Managers and Admins can create new users 
 20. [ ] Desktop mode is most important but should be available in mobile 
+31. [ ] Car description includes Model,Brand,Type,Year and picture.

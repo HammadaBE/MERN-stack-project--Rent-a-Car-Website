@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 
-const carSchema = new mongoose.Schema({
+const carSchema = new mongoose.Schema(
+    {
     registration:{
         type: String,
         required: true
@@ -30,6 +31,11 @@ const carSchema = new mongoose.Schema({
         type:String,
         default:true
     }
-})
+    
+},
+{
+    timestamps: true
+}
+)
 
 module.exports = mongoose.model('Car', carSchema)
