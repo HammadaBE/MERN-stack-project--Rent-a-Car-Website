@@ -61,7 +61,7 @@ const Login = () => {
 
     const content = (
         <section className="public">
-            <header>
+            <header >
                 <h1>Employee Login</h1>
             </header>
             <main className="login">
